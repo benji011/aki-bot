@@ -1,8 +1,9 @@
 import os
 import random
-from discord import Webhook, RequestsWebhookAdapter
 
 import requests
+
+from discord import RequestsWebhookAdapter, Webhook
 
 NEWS_API_KEY = os.environ['USEFUL_TREVOR_API_KEY']
 
