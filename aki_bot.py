@@ -1,3 +1,4 @@
+import datetime
 import os
 import random
 
@@ -133,8 +134,13 @@ def main():
         adapter=RequestsWebhookAdapter()
     )
 
-    img = get_kitty()
-    msg = send_kitty(img)
+    now = datetime.datetime.now()
+    if (now.day % 2 == 0):
+        img = get_kitty()
+        msg = send_kitty(img)
+    else:
+        msg = get_random_news()
+
     webhook.send(msg)
 
 
