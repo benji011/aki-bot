@@ -88,6 +88,43 @@ def get_random_news():
         )
 
 
+def get_kitty():
+    """Get a random cat gif."""
+    domain = 'https://api.thecatapi.com/'
+    path = 'v1/images/search'
+    args = '?mime_types=gif'
+    url = domain + path + args
+    r = requests.get(url)
+    response_data = r.json()
+    if response_data:
+        cat_img = response_data[0]['url']
+        return cat_img
+
+
+def send_kitty(img):
+    """Send kitty."""
+    recipent = "<@{user_id}>".format(
+        user_id=get_random_inaka_boisss()
+    )
+    greeting = "ねぇねぇ。。 "
+    message = (
+        "かわいいでしょう？ {cat_img}"
+    ).format(
+        cat_img=img
+    )
+    final_greeting = (
+        "じゃまた明日 my {play_name}"
+    ).format(
+        play_name=get_uncomfortable_play_name()
+    )
+    return (
+        greeting + " " +
+        recipent + " ! " +
+        message + "\n" +
+        final_greeting
+    )
+
+
 def main():
     """The main function."""
     webhook = Webhook.partial(
@@ -96,8 +133,9 @@ def main():
         adapter=RequestsWebhookAdapter()
     )
 
-    news = get_random_news()
-    webhook.send(news)
+    img = get_kitty()
+    msg = send_kitty(img)
+    webhook.send(msg)
 
 
 if __name__ == "__main__":
