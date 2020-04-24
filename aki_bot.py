@@ -51,7 +51,7 @@ def get_uncomfortable_play_name():
     )
 
 
-def get_random_news():
+def compose_msg_with_news():
     """Get random news article from the BBC."""
     domain = 'https://newsapi.org/'
     path = 'v2/top-headlines'
@@ -102,7 +102,7 @@ def get_kitty():
         return cat_img
 
 
-def send_kitty(img):
+def compose_msg_with_kitty(img):
     """Send kitty."""
     recipent = "<@{user_id}>".format(
         user_id=get_random_inaka_boisss()
@@ -137,9 +137,9 @@ def main():
     now = datetime.datetime.now()
     if (now.day % 2 == 0):
         img = get_kitty()
-        msg = send_kitty(img)
+        msg = compose_msg_with_kitty(img)
     else:
-        msg = get_random_news()
+        msg = compose_msg_with_news()
 
     webhook.send(msg)
 
