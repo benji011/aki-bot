@@ -126,21 +126,25 @@ def compose_msg_with_kitty(img):
     )
 
 
-def main():
-    """The main function."""
+def send_message(msg):
+    """Send message."""
     webhook = Webhook.partial(
         DISCORD_TOKEN_ID,
         DISCORD_TOKEN,
         adapter=RequestsWebhookAdapter()
     )
+    webhook.send(msg)
 
+
+def main():
+    """The main function."""
     now = datetime.datetime.now()
     day_is_even = (now.day % 2 == 0)
     msg = (
         compose_msg_with_kitty(get_kitty())
         if day_is_even else compose_msg_with_news()
     )
-    webhook.send(msg)
+    send_message(msg)
 
 
 if __name__ == "__main__":
