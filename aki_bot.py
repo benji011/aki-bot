@@ -135,12 +135,11 @@ def main():
     )
 
     now = datetime.datetime.now()
-    if (now.day % 2 == 0):
-        img = get_kitty()
-        msg = compose_msg_with_kitty(img)
-    else:
-        msg = compose_msg_with_news()
-
+    day_is_even = (now.day % 2 == 0)
+    msg = (
+        compose_msg_with_kitty(get_kitty())
+        if day_is_even else compose_msg_with_news()
+    )
     webhook.send(msg)
 
 
