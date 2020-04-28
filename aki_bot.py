@@ -15,40 +15,13 @@ DARREN = os.environ['DARREN']
 
 DISCORD_TOKEN_ID = os.environ['DISCORD_TOKEN_ID']
 DISCORD_TOKEN = os.environ['DISCORD_TOKEN']
+GITHUB_LINK = "https://github.com/benji011/aki-bot/blob/master/aki_bot.py"
 
 
 def get_random_inaka_boisss():
     """Get a random person to send a random article to."""
     inaka_boisss = [BENJI, ANDO, DANNY, DARREN]
     return random.choice(inaka_boisss)
-
-
-def get_uncomfortable_play_name():
-    """Get uncomfortable play name."""
-    play_name_one = [
-        "spicy",
-        "salty",
-        "wacky",
-        "flippy flappy",
-        "Mmmmmmmmmmm",
-        "stale",
-        "vaginal discharged"
-    ]
-
-    play_name_two = [
-        "hunk",
-        "spunk master",
-        "potato",
-        "smashy washlet",
-        "banana lips",
-        "sexual sausage",
-        "ass cruncher"
-    ]
-
-    return "{play_name_one} {play_name_two}".format(
-        play_name_one=random.choice(play_name_one),
-        play_name_two=random.choice(play_name_two)
-    )
 
 
 def compose_msg_with_news():
@@ -76,17 +49,18 @@ def compose_msg_with_news():
             title=random_news_article['title'],
             url=random_news_article['url']
         )
-        final_greeting = (
-            "じゃまた明日 my {play_name}"
-        ).format(
-            play_name=get_uncomfortable_play_name()
-        )
-        return (
-            greeting + " " +
-            recipent + " ! " +
-            message + "\n" +
-            final_greeting
-        )
+    final_greeting = (
+        "beep bop I'm a bot\n"
+        "My source code is here - {github_link}"
+    ).format(
+        github_link=GITHUB_LINK
+    )
+    return (
+        greeting + " " +
+        recipent + " ! " +
+        message + "\n" +
+        final_greeting
+    )
 
 
 def get_kitty():
@@ -114,9 +88,10 @@ def compose_msg_with_kitty(img):
         cat_img=img
     )
     final_greeting = (
-        "じゃまた明日 my {play_name}"
+        "beep bop I'm a bot\n"
+        "My source code is here - {github_link}"
     ).format(
-        play_name=get_uncomfortable_play_name()
+        github_link=GITHUB_LINK
     )
     return (
         greeting + " " +
