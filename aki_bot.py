@@ -49,17 +49,10 @@ def compose_msg_with_news():
             title=random_news_article['title'],
             url=random_news_article['url']
         )
-    final_greeting = (
-        "beep bop I'm a bot\n"
-        "My source code is here - {github_link}"
-    ).format(
-        github_link=GITHUB_LINK
-    )
     return (
         greeting + " " +
         recipent + " ! " +
-        message + "\n" +
-        final_greeting
+        message + "\n"
     )
 
 
@@ -87,17 +80,10 @@ def compose_msg_with_kitty(img):
     ).format(
         cat_img=img
     )
-    final_greeting = (
-        "beep bop I'm a bot\n"
-        "My source code is here - {github_link}"
-    ).format(
-        github_link=GITHUB_LINK
-    )
     return (
         greeting + " " +
         recipent + " ! " +
-        message + "\n" +
-        final_greeting
+        message + "\n"
     )
 
 
@@ -119,7 +105,14 @@ def main():
         compose_msg_with_kitty(get_kitty())
         if day_is_even else compose_msg_with_news()
     )
-    send_message(msg)
+    github_url_msg = (
+        "beep bop I'm a bot\n"
+        "My source code is here - {github_link}"
+    ).format(
+        github_link=GITHUB_LINK
+    )
+    content = msg + github_url_msg
+    send_message(content)
 
 
 if __name__ == "__main__":
